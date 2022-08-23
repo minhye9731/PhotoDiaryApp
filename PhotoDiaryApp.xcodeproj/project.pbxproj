@@ -13,6 +13,29 @@
 		0E94D64F28B4F32400113A46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E94D64D28B4F32400113A46 /* Main.storyboard */; };
 		0E94D65128B4F32700113A46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E94D65028B4F32700113A46 /* Assets.xcassets */; };
 		0E94D65428B4F32700113A46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E94D65228B4F32700113A46 /* LaunchScreen.storyboard */; };
+		0E94D65D28B4F87600113A46 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0E94D65C28B4F87600113A46 /* Kingfisher */; };
+		0E94D66028B4F88500113A46 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E94D65F28B4F88500113A46 /* SnapKit */; };
+		0E94D66328B4F8B700113A46 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E94D66228B4F8B700113A46 /* Realm */; };
+		0E94D66528B4F8B700113A46 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E94D66428B4F8B700113A46 /* RealmSwift */; };
+		0E94D67128B4FA3400113A46 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67028B4FA3300113A46 /* RealmModel.swift */; };
+		0E94D67328B4FA9700113A46 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67228B4FA9700113A46 /* HomeViewController.swift */; };
+		0E94D67528B4FACF00113A46 /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67428B4FACF00113A46 /* Transition+Extension.swift */; };
+		0E94D67728B4FB0E00113A46 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67628B4FB0E00113A46 /* Constants.swift */; };
+		0E94D67928B4FB2300113A46 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67828B4FB2300113A46 /* Color.swift */; };
+		0E94D67B28B4FB5600113A46 /* WriteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67A28B4FB5600113A46 /* WriteTextField.swift */; };
+		0E94D67D28B4FB7C00113A46 /* DiaryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67C28B4FB7C00113A46 /* DiaryImageView.swift */; };
+		0E94D67F28B4FBA500113A46 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D67E28B4FBA500113A46 /* ReusableProtocol.swift */; };
+		0E94D68128B4FBE200113A46 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68028B4FBE200113A46 /* BaseViewController.swift */; };
+		0E94D68328B4FC1400113A46 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68228B4FC1400113A46 /* BaseView.swift */; };
+		0E94D68528B4FC3600113A46 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68428B4FC3600113A46 /* BaseCollectionViewCell.swift */; };
+		0E94D68728B4FC5100113A46 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68628B4FC5100113A46 /* BaseTableViewCell.swift */; };
+		0E94D68928B4FCE200113A46 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68828B4FCE200113A46 /* WriteViewController.swift */; };
+		0E94D68B28B4FD3800113A46 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68A28B4FD3800113A46 /* WriteView.swift */; };
+		0E94D68D28B4FD9600113A46 /* SearchImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68C28B4FD9600113A46 /* SearchImageViewController.swift */; };
+		0E94D68F28B4FDBA00113A46 /* ImageSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D68E28B4FDBA00113A46 /* ImageSearchView.swift */; };
+		0E94D69128B4FDE200113A46 /* ImageSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D69028B4FDE200113A46 /* ImageSearchCollectionViewCell.swift */; };
+		0E94D69328B4FE0500113A46 /* ImageDummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D69228B4FE0500113A46 /* ImageDummyData.swift */; };
+		0E94D69528B52F7800113A46 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E94D69428B52F7700113A46 /* HomeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +47,25 @@
 		0E94D65028B4F32700113A46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E94D65328B4F32700113A46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E94D65528B4F32700113A46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E94D67028B4FA3300113A46 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		0E94D67228B4FA9700113A46 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0E94D67428B4FACF00113A46 /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
+		0E94D67628B4FB0E00113A46 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0E94D67828B4FB2300113A46 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		0E94D67A28B4FB5600113A46 /* WriteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTextField.swift; sourceTree = "<group>"; };
+		0E94D67C28B4FB7C00113A46 /* DiaryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryImageView.swift; sourceTree = "<group>"; };
+		0E94D67E28B4FBA500113A46 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		0E94D68028B4FBE200113A46 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0E94D68228B4FC1400113A46 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		0E94D68428B4FC3600113A46 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E94D68628B4FC5100113A46 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		0E94D68828B4FCE200113A46 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		0E94D68A28B4FD3800113A46 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
+		0E94D68C28B4FD9600113A46 /* SearchImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImageViewController.swift; sourceTree = "<group>"; };
+		0E94D68E28B4FDBA00113A46 /* ImageSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchView.swift; sourceTree = "<group>"; };
+		0E94D69028B4FDE200113A46 /* ImageSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E94D69228B4FE0500113A46 /* ImageDummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDummyData.swift; sourceTree = "<group>"; };
+		0E94D69428B52F7700113A46 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E94D66528B4F8B700113A46 /* RealmSwift in Frameworks */,
+				0E94D66328B4F8B700113A46 /* Realm in Frameworks */,
+				0E94D65D28B4F87600113A46 /* Kingfisher in Frameworks */,
+				0E94D66028B4F88500113A46 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +102,10 @@
 		0E94D64628B4F32400113A46 /* PhotoDiaryApp */ = {
 			isa = PBXGroup;
 			children = (
+				0E94D66E28B4F9AC00113A46 /* Realm */,
+				0E94D66B28B4F98900113A46 /* Scene */,
+				0E94D66728B4F91B00113A46 /* Utility */,
+				0E94D66628B4F8F500113A46 /* Extension */,
 				0E94D64728B4F32400113A46 /* AppDelegate.swift */,
 				0E94D64928B4F32400113A46 /* SceneDelegate.swift */,
 				0E94D64B28B4F32400113A46 /* ViewController.swift */,
@@ -65,6 +115,101 @@
 				0E94D65528B4F32700113A46 /* Info.plist */,
 			);
 			path = PhotoDiaryApp;
+			sourceTree = "<group>";
+		};
+		0E94D66628B4F8F500113A46 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D67428B4FACF00113A46 /* Transition+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		0E94D66728B4F91B00113A46 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D66A28B4F93800113A46 /* Constants */,
+				0E94D66928B4F93000113A46 /* CustomView */,
+				0E94D66828B4F92600113A46 /* BaseView */,
+				0E94D67E28B4FBA500113A46 /* ReusableProtocol.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		0E94D66828B4F92600113A46 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D68028B4FBE200113A46 /* BaseViewController.swift */,
+				0E94D68228B4FC1400113A46 /* BaseView.swift */,
+				0E94D68428B4FC3600113A46 /* BaseCollectionViewCell.swift */,
+				0E94D68628B4FC5100113A46 /* BaseTableViewCell.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		0E94D66928B4F93000113A46 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D67A28B4FB5600113A46 /* WriteTextField.swift */,
+				0E94D67C28B4FB7C00113A46 /* DiaryImageView.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		0E94D66A28B4F93800113A46 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D67628B4FB0E00113A46 /* Constants.swift */,
+				0E94D67828B4FB2300113A46 /* Color.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		0E94D66B28B4F98900113A46 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D66F28B4F9B300113A46 /* Home */,
+				0E94D66C28B4F99200113A46 /* Write */,
+				0E94D66D28B4F9A100113A46 /* ImageSearch */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		0E94D66C28B4F99200113A46 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D68828B4FCE200113A46 /* WriteViewController.swift */,
+				0E94D68A28B4FD3800113A46 /* WriteView.swift */,
+			);
+			path = Write;
+			sourceTree = "<group>";
+		};
+		0E94D66D28B4F9A100113A46 /* ImageSearch */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D68C28B4FD9600113A46 /* SearchImageViewController.swift */,
+				0E94D68E28B4FDBA00113A46 /* ImageSearchView.swift */,
+				0E94D69028B4FDE200113A46 /* ImageSearchCollectionViewCell.swift */,
+				0E94D69228B4FE0500113A46 /* ImageDummyData.swift */,
+			);
+			path = ImageSearch;
+			sourceTree = "<group>";
+		};
+		0E94D66E28B4F9AC00113A46 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D67028B4FA3300113A46 /* RealmModel.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		0E94D66F28B4F9B300113A46 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0E94D67228B4FA9700113A46 /* HomeViewController.swift */,
+				0E94D69428B52F7700113A46 /* HomeTableViewCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +228,12 @@
 			dependencies = (
 			);
 			name = PhotoDiaryApp;
+			packageProductDependencies = (
+				0E94D65C28B4F87600113A46 /* Kingfisher */,
+				0E94D65F28B4F88500113A46 /* SnapKit */,
+				0E94D66228B4F8B700113A46 /* Realm */,
+				0E94D66428B4F8B700113A46 /* RealmSwift */,
+			);
 			productName = PhotoDiaryApp;
 			productReference = 0E94D64428B4F32400113A46 /* PhotoDiaryApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +262,11 @@
 				Base,
 			);
 			mainGroup = 0E94D63B28B4F32400113A46;
+			packageReferences = (
+				0E94D65B28B4F87600113A46 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				0E94D65E28B4F88500113A46 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0E94D66128B4F8B700113A46 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 0E94D64528B4F32400113A46 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +294,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E94D67528B4FACF00113A46 /* Transition+Extension.swift in Sources */,
+				0E94D68528B4FC3600113A46 /* BaseCollectionViewCell.swift in Sources */,
+				0E94D68328B4FC1400113A46 /* BaseView.swift in Sources */,
+				0E94D67B28B4FB5600113A46 /* WriteTextField.swift in Sources */,
+				0E94D67D28B4FB7C00113A46 /* DiaryImageView.swift in Sources */,
+				0E94D67328B4FA9700113A46 /* HomeViewController.swift in Sources */,
 				0E94D64C28B4F32400113A46 /* ViewController.swift in Sources */,
+				0E94D68128B4FBE200113A46 /* BaseViewController.swift in Sources */,
+				0E94D69328B4FE0500113A46 /* ImageDummyData.swift in Sources */,
+				0E94D68F28B4FDBA00113A46 /* ImageSearchView.swift in Sources */,
+				0E94D67128B4FA3400113A46 /* RealmModel.swift in Sources */,
+				0E94D67F28B4FBA500113A46 /* ReusableProtocol.swift in Sources */,
+				0E94D68D28B4FD9600113A46 /* SearchImageViewController.swift in Sources */,
+				0E94D67728B4FB0E00113A46 /* Constants.swift in Sources */,
+				0E94D67928B4FB2300113A46 /* Color.swift in Sources */,
 				0E94D64828B4F32400113A46 /* AppDelegate.swift in Sources */,
+				0E94D69528B52F7800113A46 /* HomeTableViewCell.swift in Sources */,
+				0E94D68728B4FC5100113A46 /* BaseTableViewCell.swift in Sources */,
+				0E94D68928B4FCE200113A46 /* WriteViewController.swift in Sources */,
 				0E94D64A28B4F32400113A46 /* SceneDelegate.swift in Sources */,
+				0E94D69128B4FDE200113A46 /* ImageSearchCollectionViewCell.swift in Sources */,
+				0E94D68B28B4FD3800113A46 /* WriteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +479,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -332,7 +507,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +533,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E94D65B28B4F87600113A46 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		0E94D65E28B4F88500113A46 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0E94D66128B4F8B700113A46 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E94D65C28B4F87600113A46 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E94D65B28B4F87600113A46 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		0E94D65F28B4F88500113A46 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E94D65E28B4F88500113A46 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0E94D66228B4F8B700113A46 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E94D66128B4F8B700113A46 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0E94D66428B4F8B700113A46 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E94D66128B4F8B700113A46 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E94D63C28B4F32400113A46 /* Project object */;
 }
