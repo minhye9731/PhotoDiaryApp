@@ -11,57 +11,49 @@ import RealmSwift
 
 class HomeViewController: BaseViewController {
     
-    let localRealm = try! Realm() // Realm 2. Realm파일에 접근하는 상수 선언
+//    let localRealm = try! Realm() // Realm 2. Realm파일에 접근하는 상수 선언
+    let repository = UserDiaryRepository()
     
     lazy var tableView: UITableView = {
         let view = UITableView()
-        view.rowHeight = 100
         view.delegate = self
         view.dataSource = self
         view.backgroundColor = .lightGray
         return view
-    }() // 즉시 실행 클로저
+    }()
     
     // Realm 3. Realm에서 읽어온 데이터를 담을 배열 선언
-    // 어떤 작업이 있어도 property observer로 reload 해줄 수 있음!
+    // 어떤 작업이 있어도 property observer로 reload 해줄 수 있음! (정렬, 필터, 즐겨찾기 whatever)
     var tasks: Results<UserDiary>! {
         didSet {
-            // present, overCurrentComtext, overFullscreen > viewWillAppear X
-            // 정렬, 필터, 즐겨찾기 whatever
             tableView.reloadData()
-            print("Tasks Changed")
+            print("Tasks Changed!!")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(#function)
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print(#function)
         // Realm 4. 배열에 Realm의 데이터 초기화, Realm 데이터를 정렬해
         // sorted 안해주면 데이터가 생성된 순서(objectid)로 정렬된다.
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
-        print(#function)
-        // 화면 갱신은 화면 전환 코드 및 생명 주기 실헹 점검 필요
+        fetchRealm()
     }
     
     func fetchRealm() {
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
+//        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
+        tasks = repository.fetch()
     }
     
     override func configure() {
+        
         view.addSubview(tableView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
-        
-        let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortButtonClicked))
-        
-        let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterButtonClicked))
-        
-        navigationItem.leftBarButtonItems = [sortButton, filterButton]
+        setNaviBarItem()
     }
     
     override func setConstraints() {
@@ -70,6 +62,13 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    func setNaviBarItem() {
+        let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortButtonClicked))
+        let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterButtonClicked))
+        
+        navigationItem.leftBarButtonItems = [sortButton, filterButton]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
+    }
     
     @objc func sortButtonClicked() {
         tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "regdate", ascending: true)
@@ -83,26 +82,30 @@ class HomeViewController: BaseViewController {
         //.filter("diaryTitle = '오늘의 일기 171'")
     }
     
-    
     @objc func plusButtonClicked() {
         let vc = WriteViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        transition(vc, transitionStyle: .presentFullNavigation)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-
-
-// Realm 5. 테이블뷰에 데이터 표현
+// MARK: - Realm 5. 테이블뷰에 데이터 표현
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = tasks[indexPath.row].diaryTitle
-        // cell.setData(data: tasks[indexPath.row])
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier) as? HomeTableViewCell else { return UITableViewCell() }
+        
+        cell.diaryImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].objectId).jpg")
+        cell.setData(data: tasks[indexPath.row])
+        
         return cell
     }
     
@@ -112,7 +115,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         // 공식문서 참고 : uicontextualactionhandler
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
-            //            print("leading - favorite button clicked")
             
             // realm data update
             try! self.localRealm.write {
@@ -120,10 +122,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 self.tasks[indexPath.row].favorite = !self.tasks[indexPath.row].favorite
                 
                 //하나의 테이블에 특정 컬럼 전체 값을 변경
-                //                self.tasks.setValue(true, forKey: "favorite")
+//                self.tasks.setValue(true, forKey: "favorite")
                 
                 //하나의 레코드에서 여러 컬럼들이 변경
-                //                self.localRealm.create(UserDiary.self, value: ["objectId": self.tasks[indexPath.row].objectId, "diaryContent": "변경 테스트", "diaryTitle": "제목임"], update: .modified)
+//                self.localRealm.create(UserDiary.self, value: ["objectId": self.tasks[indexPath.row].objectId, "diaryContent": "변경 테스트", "diaryTitle": "제목임"], update: .modified)
                 
                 print("Realm UPdate Succeed, ReloadRows 필요")
             }
@@ -144,9 +146,24 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        
         // 공식문서 참고 : uicontextualactionhandler
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
+            
+            // 해결방법 : 인텍스를 변수에 담아둬라. 데이터의 정합성을 위해
+            let task = self.tasks[indexPath.row]
+            
+            // 먼저하면 에러안남
+//            self.removeImageFromDocument(fileName: "\(self.tasks[indexPath.row].objectId).jpg")
+            
+            try! self.localRealm.write {
+                self.localRealm.delete(self.tasks[indexPath.row])
+            } // 여기서 task 삭제되자마자 property observer에 의해 tableview가 갱신되어서 데이터 표상에서는 해당 index 데이터는 사라져버림
+            
+            //후에 지우면 에러남. 왜? indexPath.row 가 같은애를 말하지 않아서. 시기 차이가 있어서 다른애를 호출하고 있어서 충돌이 난다.
+//            self.removeImageFromDocument(fileName: "\(self.tasks[indexPath.row].objectId).jpg")
+            
+            self.fetchRealm()
+            
             print("trailing - favorite button clicked")
         }
         
