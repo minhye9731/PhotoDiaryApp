@@ -8,9 +8,20 @@
 import Foundation
 import RealmSwift
 
+// 여러개의 테이블 => CRUD
+
+// 레포지토리가 하나라 해도, 어떤 메서드가 있는지 보기 편하게 프로토콜 만드는게 좋음
+protocol UserDiaryRepositoryType {
+    func fetch() -> Results<UserDiary>
+    func fetchSort(_ sort: String) -> Results<UserDiary>
+    func fetchFilter() -> Results<UserDiary>
+    func updateFavorite(item: UserDiary)
+    func deleteItem(item: UserDiary)
+}
+
 class UserDiaryRepository {
     
-    let localRealm = try! Realm()
+    let localRealm = try! Realm() // struct가 싱글톤이 안되는 이유?
     
     func fetch() -> Results<UserDiary> {
         return localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
