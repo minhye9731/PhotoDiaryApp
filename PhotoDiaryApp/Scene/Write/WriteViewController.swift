@@ -14,7 +14,7 @@ protocol SelectImageDelegate {
     func sendImageData(image: UIImage)
 }
 
-class WriteViewController: BaseViewController {
+final class WriteViewController: BaseViewController {
 
     let mainView = WriteView()
     let localRealm = try! Realm() //Realm 2. Realm 테이블에 데이터를 CRUD할 때, Realm 테이블 경로에 접근
@@ -92,7 +92,7 @@ class WriteViewController: BaseViewController {
         transition(vc, transitionStyle: .prsentNavigation)
     }
     
-    @objc func closeButtonClicked() {
+    @objc private func closeButtonClicked() {
         dismiss(animated: true)
     }
     

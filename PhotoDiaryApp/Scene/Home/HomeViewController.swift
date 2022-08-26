@@ -8,11 +8,21 @@
 import UIKit
 import SnapKit
 import RealmSwift
+import FSCalendar
 
 class HomeViewController: BaseViewController {
     
 //    let localRealm = try! Realm() // Realm 2. Realm파일에 접근하는 상수 선언
     let repository = UserDiaryRepository()
+    
+    lazy var calendar: FSCalendar = {
+        let view = FSCalendar()
+        view.delegate = self
+        view.dataSource = self
+        view.backgroundColor = .white
+        return view
+    }()
+    
     
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -20,6 +30,12 @@ class HomeViewController: BaseViewController {
         view.dataSource = self
         view.backgroundColor = .lightGray
         return view
+    }()
+    
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyMMdd"
+        return formatter
     }()
     
     // Realm 3. Realm에서 읽어온 데이터를 담을 배열 선언
@@ -51,14 +67,21 @@ class HomeViewController: BaseViewController {
     }
     
     override func configure() {
-        
         view.addSubview(tableView)
+        view.addSubview(calendar)
+        
         setNaviBarItem()
     }
     
     override func setConstraints() {
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.leading.bottom.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.topMargin.equalTo(300)
+        }
+        
+        calendar.snp.makeConstraints { make in
+            make.leading.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(300)
         }
     }
     
@@ -167,7 +190,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource {
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        return repository.fetchDate(date: date).count
+    }
+    
+//    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+//        return "새싹"
+//    }
 
+//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
+//        return UIImage(systemName: "star.fill")
+//    }
+
+    //date: yyyyMMdd hh:mm:ss => dateformatter
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        return formatter.string(from: date) == "220907" ? "오프라인 행사" : nil
+    }
+
+    // 재확인 필요
+//    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+//        tasks = repository.fetchDate(date: date)
+//    }
+
+}
 
 
 

@@ -17,12 +17,22 @@ protocol UserDiaryRepositoryType {
     func fetchFilter() -> Results<UserDiary>
     func updateFavorite(item: UserDiary)
     func deleteItem(item: UserDiary)
+    
+    func fetchDate(date: Date) -> Results<UserDiary>
 }
 
 class UserDiaryRepository {
     
     let localRealm = try! Realm() // struct가 싱글톤이 안되는 이유?
     
+    // 재확인
+    func fetchDate(date: Date) -> Results<UserDiary> {
+        return localRealm.objects(UserDiary.self).filter("diaryDate >= %@ AND diaryDate < %@", date, Date(timeInterval: 86400, since: date)) // NSPredicate
+    }
+    
+    
+    
+     
     func fetch() -> Results<UserDiary> {
         return localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
     }
