@@ -60,6 +60,7 @@ class HomeTableViewCell: BaseTableViewCell {
     
     override func configure() {
         backgroundColor = Constants.BaseColor.background
+        
         [diaryImageView, stackView].forEach {
             contentView.addSubview($0)
         }

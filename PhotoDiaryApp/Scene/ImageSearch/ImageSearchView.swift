@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ImageSearchView: BaseView {
     
@@ -22,20 +23,6 @@ class ImageSearchView: BaseView {
         return view
     }()
     
-    let cancelButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("취소", for: .normal)
-        view.tintColor = .red
-        return view
-    }()
-    
-    let selectButton: UIButton = {
-        let view = UIButton()
-        view.setTitle("선택", for: .normal)
-        view.tintColor = .blue
-        return view
-    }()
-     
     let collectionView: UICollectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: imageCollectionViewLayout())
         return view
@@ -47,9 +34,7 @@ class ImageSearchView: BaseView {
             self.addSubview($0)
         }
         
-        [searchBar, cancelButton, selectButton].forEach {
-            searchAreaView.addSubview($0)
-        }
+        searchAreaView.addSubview(searchBar)
         
     }
     
@@ -60,35 +45,17 @@ class ImageSearchView: BaseView {
             make.height.equalTo(70)
         }
         
-        selectButton.snp.makeConstraints { make in
-            make.centerY.equalTo(searchAreaView)
-            make.trailing.equalTo(searchAreaView.snp.trailing).offset(-10)
-            make.width.height.equalTo(44)
-        }
-        
-        cancelButton.snp.makeConstraints { make in
-            make.centerY.equalTo(searchAreaView)
-            make.trailing.equalTo(selectButton.snp.leading).offset(-10)
-            make.width.height.equalTo(44)
-        }
-        
         searchBar.snp.makeConstraints { make in
             make.centerY.equalTo(searchAreaView)
             make.leading.equalTo(searchAreaView.snp.leading).offset(10)
-//            make.width.equalTo(100)
-            make.trailing.equalTo(cancelButton.snp.leading).offset(-10)
+            make.trailing.equalTo(searchAreaView.snp.trailing).offset(-10)
         }
         
-        
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(self).offset(70)
+            make.top.equalTo(self).offset(130)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
-    
-    
-    
-    
     
     
     // MARK: - CollectionViewLayout
