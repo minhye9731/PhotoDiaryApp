@@ -12,5 +12,8 @@ class UserDiaryRepository {
     
     let localRealm = try! Realm()
     
+    func fetch() -> Results<UserDiary> {
+        return localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
+    }
     
 }
