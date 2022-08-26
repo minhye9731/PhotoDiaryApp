@@ -71,15 +71,17 @@ class HomeViewController: BaseViewController {
     }
     
     @objc func sortButtonClicked() {
-        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "regdate", ascending: true)
+//        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "regdate", ascending: true)
+        tasks = repository.fetchSort("regdate")
     }
     
     // realm filter array, NSPredicate
     @objc func filterButtonClicked() {
         // string 비교시에는 하나의 비교단위를 작은 따옴표로 묶어줘야 함
         // 대소문자 상관없이 다 포함여부 확인하려면 CONTAINS[c] 넣고 해야함
-        tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS[c] '3'")
+//        tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS[c] '3'")
         //.filter("diaryTitle = '오늘의 일기 171'")
+        tasks = repository.fetchFilter()
     }
     
     @objc func plusButtonClicked() {
@@ -117,22 +119,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
             
             // realm data update
-            try! self.localRealm.write {
-                //하나의 레코드에서 특정 컬럼 하나만 변경
-                self.tasks[indexPath.row].favorite = !self.tasks[indexPath.row].favorite
-                
-                //하나의 테이블에 특정 컬럼 전체 값을 변경
-//                self.tasks.setValue(true, forKey: "favorite")
-                
-                //하나의 레코드에서 여러 컬럼들이 변경
-//                self.localRealm.create(UserDiary.self, value: ["objectId": self.tasks[indexPath.row].objectId, "diaryContent": "변경 테스트", "diaryTitle": "제목임"], update: .modified)
-                
-                print("Realm UPdate Succeed, ReloadRows 필요")
-            }
+            self.repository.updateFavorite(item: self.tasks[indexPath.row])
             
             // 1. 스와이프한 셀 하나만 ReloadRow에 코드를 구현
             // 12. 데이터가 변경됐으니 다시 realm에서 데이터를 가져오기 => didSet일관적 향태로 댄ㅁ
-            self.fetchRealm()
+//            self.fetchRealm() 이제 이거 안해도 됨. 바뀌면 자동으로 인식해서 재정렬하니까.
         }
         
         
@@ -150,21 +141,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
             
             // 해결방법 : 인텍스를 변수에 담아둬라. 데이터의 정합성을 위해
-            let task = self.tasks[indexPath.row]
+//            let task = self.tasks[indexPath.row]
+            
+            self.repository.deleteItem(item: self.tasks[indexPath.row])
             
             // 먼저하면 에러안남
 //            self.removeImageFromDocument(fileName: "\(self.tasks[indexPath.row].objectId).jpg")
-            
-            try! self.localRealm.write {
-                self.localRealm.delete(self.tasks[indexPath.row])
-            } // 여기서 task 삭제되자마자 property observer에 의해 tableview가 갱신되어서 데이터 표상에서는 해당 index 데이터는 사라져버림
+//
+//            try! self.localRealm.write {
+//                self.localRealm.delete(self.tasks[indexPath.row])
+//            } // 여기서 task 삭제되자마자 property observer에 의해 tableview가 갱신되어서 데이터 표상에서는 해당 index 데이터는 사라져버림
             
             //후에 지우면 에러남. 왜? indexPath.row 가 같은애를 말하지 않아서. 시기 차이가 있어서 다른애를 호출하고 있어서 충돌이 난다.
 //            self.removeImageFromDocument(fileName: "\(self.tasks[indexPath.row].objectId).jpg")
-            
-            self.fetchRealm()
-            
-            print("trailing - favorite button clicked")
         }
         
         let example = UIContextualAction(style: .normal, title: "예시") { action, view, completionHandler in
