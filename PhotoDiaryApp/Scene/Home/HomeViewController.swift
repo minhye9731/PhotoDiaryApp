@@ -12,7 +12,6 @@ import FSCalendar
 
 class HomeViewController: BaseViewController {
     
-//    let localRealm = try! Realm() // Realm 2. Realm파일에 접근하는 상수 선언
     let repository = UserDiaryRepository()
     
     lazy var calendar: FSCalendar = {
@@ -23,6 +22,11 @@ class HomeViewController: BaseViewController {
         return view
     }()
     
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyMMdd"
+        return formatter
+    }()
     
     lazy var tableView: UITableView = {
         let view = UITableView()
@@ -30,12 +34,6 @@ class HomeViewController: BaseViewController {
         view.dataSource = self
         view.backgroundColor = .lightGray
         return view
-    }()
-    
-    let formatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyMMdd"
-        return formatter
     }()
     
     // Realm 3. Realm에서 읽어온 데이터를 담을 배열 선언
@@ -47,6 +45,7 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
@@ -61,15 +60,10 @@ class HomeViewController: BaseViewController {
         fetchRealm()
     }
     
-    func fetchRealm() {
-//        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
-        tasks = repository.fetch()
-    }
-    
+    // MARK: - layout
     override func configure() {
         view.addSubview(tableView)
         view.addSubview(calendar)
-        
         setNaviBarItem()
     }
     
@@ -88,30 +82,11 @@ class HomeViewController: BaseViewController {
     func setNaviBarItem() {
         let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortButtonClicked))
         let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterButtonClicked))
-        
         navigationItem.leftBarButtonItems = [sortButton, filterButton]
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
     }
-    
-    @objc func sortButtonClicked() {
-//        tasks = localRealm.objects(UserDiary.self).sorted(byKeyPath: "regdate", ascending: true)
-        tasks = repository.fetchSort("regdate")
-    }
-    
-    // realm filter array, NSPredicate
-    @objc func filterButtonClicked() {
-        // string 비교시에는 하나의 비교단위를 작은 따옴표로 묶어줘야 함
-        // 대소문자 상관없이 다 포함여부 확인하려면 CONTAINS[c] 넣고 해야함
-//        tasks = localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS[c] '3'")
-        //.filter("diaryTitle = '오늘의 일기 171'")
-        tasks = repository.fetchFilter()
-    }
-    
-    @objc func plusButtonClicked() {
-        let vc = WriteViewController()
-        transition(vc, transitionStyle: .presentFullNavigation)
-//        self.navigationController?.pushViewController(vc, animated: true)
-    }
+
 }
 
 // MARK: - Realm 5. 테이블뷰에 데이터 표현
@@ -143,12 +118,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             // realm data update
             self.repository.updateFavorite(item: self.tasks[indexPath.row])
-            
-            // 1. 스와이프한 셀 하나만 ReloadRow에 코드를 구현
-            // 12. 데이터가 변경됐으니 다시 realm에서 데이터를 가져오기 => didSet일관적 향태로 댄ㅁ
-//            self.fetchRealm() 이제 이거 안해도 됨. 바뀌면 자동으로 인식해서 재정렬하니까.
+            // self.fetchRealm() 이제 이거 안해도 됨. 바뀌면 자동으로 인식해서 재정렬하니까.
         }
-        
         
         //realm 데이터 기준
         let image = tasks[indexPath.row].favorite ? "star.fill" : "star"
@@ -186,7 +157,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [favorite, example])
     }
     
-    
 }
 
 
@@ -217,4 +187,25 @@ extension HomeViewController: FSCalendarDelegate, FSCalendarDataSource {
 }
 
 
+// MARK: - 기타 함수들
+extension HomeViewController {
+ 
+    
+    @objc func sortButtonClicked() {
+        tasks = repository.fetchSort("regdate")
+    }
+    
+    @objc func filterButtonClicked() {
+        tasks = repository.fetchFilter()
+    }
+    
+    @objc func plusButtonClicked() {
+        let vc = WriteViewController()
+        transition(vc, transitionStyle: .presentFullNavigation)
+    }
+    
+    func fetchRealm() {
+        tasks = repository.fetch()
+    }
 
+}

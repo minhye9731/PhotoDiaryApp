@@ -10,6 +10,9 @@
 		0E0DDBA828B5D28400F4F829 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0DDBA728B5D28400F4F829 /* FileManager+Extension.swift */; };
 		0E1E147128B855B100B65CF8 /* UserDiaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147028B855B100B65CF8 /* UserDiaryRepository.swift */; };
 		0E1E147428B8617700B65CF8 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0E1E147328B8617700B65CF8 /* FSCalendar */; };
+		0E1E147628BB3A3600B65CF8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147528BB3A3600B65CF8 /* TabBarController.swift */; };
+		0E1E147828BB503000B65CF8 /* SnapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147728BB503000B65CF8 /* SnapDetailViewController.swift */; };
+		0E1E147A28BB528800B65CF8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147928BB528800B65CF8 /* DetailViewController.swift */; };
 		0E23257728B6619D00B9592B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E23257628B6619D00B9592B /* Endpoint.swift */; };
 		0E23257928B661BD00B9592B /* UnsplashAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E23257828B661BD00B9592B /* UnsplashAPIManager.swift */; };
 		0E23257B28B661ED00B9592B /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E23257A28B661ED00B9592B /* URL+Extension.swift */; };
@@ -50,6 +53,9 @@
 /* Begin PBXFileReference section */
 		0E0DDBA728B5D28400F4F829 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		0E1E147028B855B100B65CF8 /* UserDiaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiaryRepository.swift; sourceTree = "<group>"; };
+		0E1E147528BB3A3600B65CF8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0E1E147728BB503000B65CF8 /* SnapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapDetailViewController.swift; sourceTree = "<group>"; };
+		0E1E147928BB528800B65CF8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0E23257628B6619D00B9592B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0E23257828B661BD00B9592B /* UnsplashAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIManager.swift; sourceTree = "<group>"; };
 		0E23257A28B661ED00B9592B /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 				0E94D64728B4F32400113A46 /* AppDelegate.swift */,
 				0E94D64928B4F32400113A46 /* SceneDelegate.swift */,
 				0E94D64B28B4F32400113A46 /* ViewController.swift */,
+				0E1E147528BB3A3600B65CF8 /* TabBarController.swift */,
 				0E94D64D28B4F32400113A46 /* Main.storyboard */,
 				0E94D65028B4F32700113A46 /* Assets.xcassets */,
 				0E94D65228B4F32700113A46 /* LaunchScreen.storyboard */,
@@ -208,6 +215,8 @@
 		0E94D66B28B4F98900113A46 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0E1E147728BB503000B65CF8 /* SnapDetailViewController.swift */,
+				0E1E147928BB528800B65CF8 /* DetailViewController.swift */,
 				0E94D66F28B4F9B300113A46 /* Home */,
 				0E94D66C28B4F99200113A46 /* Write */,
 				0E94D66D28B4F9A100113A46 /* ImageSearch */,
@@ -343,6 +352,7 @@
 				0E94D67528B4FACF00113A46 /* Transition+Extension.swift in Sources */,
 				0E94D68528B4FC3600113A46 /* BaseCollectionViewCell.swift in Sources */,
 				0E94D68328B4FC1400113A46 /* BaseView.swift in Sources */,
+				0E1E147828BB503000B65CF8 /* SnapDetailViewController.swift in Sources */,
 				0E94D67B28B4FB5600113A46 /* WriteTextField.swift in Sources */,
 				0E94D67D28B4FB7C00113A46 /* DiaryImageView.swift in Sources */,
 				0E23257928B661BD00B9592B /* UnsplashAPIManager.swift in Sources */,
@@ -358,11 +368,13 @@
 				0E94D67F28B4FBA500113A46 /* ReusableProtocol.swift in Sources */,
 				0E94D68D28B4FD9600113A46 /* SearchImageViewController.swift in Sources */,
 				0E94D67728B4FB0E00113A46 /* Constants.swift in Sources */,
+				0E1E147A28BB528800B65CF8 /* DetailViewController.swift in Sources */,
 				0E94D67928B4FB2300113A46 /* Color.swift in Sources */,
 				0E94D64828B4F32400113A46 /* AppDelegate.swift in Sources */,
 				0E0DDBA828B5D28400F4F829 /* FileManager+Extension.swift in Sources */,
 				0E94D69528B52F7800113A46 /* HomeTableViewCell.swift in Sources */,
 				0E94D68728B4FC5100113A46 /* BaseTableViewCell.swift in Sources */,
+				0E1E147628BB3A3600B65CF8 /* TabBarController.swift in Sources */,
 				0E23257B28B661ED00B9592B /* URL+Extension.swift in Sources */,
 				0E94D68928B4FCE200113A46 /* WriteViewController.swift in Sources */,
 				0E94D64A28B4F32400113A46 /* SceneDelegate.swift in Sources */,

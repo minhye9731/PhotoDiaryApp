@@ -15,43 +15,41 @@ protocol UserDiaryRepositoryType {
     func fetch() -> Results<UserDiary>
     func fetchSort(_ sort: String) -> Results<UserDiary>
     func fetchFilter() -> Results<UserDiary>
+    func fetchDate(date: Date) -> Results<UserDiary>
     func updateFavorite(item: UserDiary)
     func deleteItem(item: UserDiary)
-    
-    func fetchDate(date: Date) -> Results<UserDiary>
 }
 
-class UserDiaryRepository {
+class UserDiaryRepository: UserDiaryRepositoryType {
     
+    // Realm 2. Realm파일에 접근하는 상수 선언
     let localRealm = try! Realm() // struct가 싱글톤이 안되는 이유?
     
-    // 재확인
-    func fetchDate(date: Date) -> Results<UserDiary> {
-        return localRealm.objects(UserDiary.self).filter("diaryDate >= %@ AND diaryDate < %@", date, Date(timeInterval: 86400, since: date)) // NSPredicate
-    }
-    
-    
-    
-     
     func fetch() -> Results<UserDiary> {
-        return localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryDate", ascending: false)
+        return localRealm.objects(UserDiary.self).sorted(byKeyPath: "diaryTitle", ascending: true)
     }
     
     func fetchSort(_ sort: String) -> Results<UserDiary> {
         return localRealm.objects(UserDiary.self).sorted(byKeyPath: sort, ascending: true)
     }
     
+    // realm filter array, NSPredicate
     func fetchFilter() -> Results<UserDiary> {
-        return localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS[c] '3'")
+        return localRealm.objects(UserDiary.self).filter("diaryTitle CONTAINS[c] 'a'")
+    }
+    // string 비교시에는 하나의 비교단위를 작은 따옴표로 묶어줘야 함
+    //.filter("diaryTitle = '오늘의 일기 171'")
+    // 대소문자 상관없이 다 포함여부 확인하려면 CONTAINS[c] 넣고 해야함
+    
+    func fetchDate(date: Date) -> Results<UserDiary> {
+        return localRealm.objects(UserDiary.self).filter("diaryDate >= %@ AND diaryDate < %@", date, Date(timeInterval: 86400, since: date)) // NSPredicate
     }
     
     func updateFavorite(item: UserDiary) {
-//        try! self.localRealm.write {
-//            self.task[a].favorite = !self.task[a].favorite
-//        }
+        
+        let localRealm = try! Realm()
       
         try! localRealm.write {
-            //하나의 레코드에서 특정 컬럼 하나만 변경
             item.favorite.toggle()
 
             //하나의 테이블에 특정 컬럼 전체 값을 변경
@@ -85,9 +83,5 @@ class UserDiaryRepository {
             print(error)
         }
     }
-    
-    
-    
-    
     
 }
