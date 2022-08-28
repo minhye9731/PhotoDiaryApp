@@ -59,38 +59,38 @@ final class WriteView: BaseView {
     }
      
     override func setConstraints() {
+        let spacing = 20
         
         sampleButton.snp.makeConstraints { make in
             make.width.height.equalTo(50)
             make.trailing.top.equalTo(self.safeAreaLayoutGuide)
         }
         
-        
         userImageView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
-            make.leading.equalTo(self).offset(20)
-            make.trailing.equalTo(self).offset(-20)
+            make.leading.equalTo(self).offset(spacing)
+            make.trailing.equalTo(self).offset(-spacing)
             make.height.equalTo(self.snp.width).multipliedBy(0.75)
         }
         
         titleTextField.snp.makeConstraints { make in
             make.top.equalTo(userImageView.snp.bottom).offset(12)
-            make.leading.equalTo(self).offset(20)
-            make.trailing.equalTo(self).offset(-20)
+            make.leading.equalTo(self).offset(spacing)
+            make.trailing.equalTo(self).offset(-spacing)
             make.height.equalTo(55)
         }
         
         dateTextField.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom).offset(12)
-            make.leading.equalTo(self).offset(20)
-            make.trailing.equalTo(self).offset(-20)
+            make.leading.equalTo(self).offset(spacing)
+            make.trailing.equalTo(self).offset(-spacing)
             make.height.equalTo(55)
         }
         
         contentTextView.snp.makeConstraints { make in
             make.top.equalTo(dateTextField.snp.bottom).offset(12)
-            make.leading.equalTo(self).offset(20)
-            make.trailing.equalTo(self).offset(-20)
+            make.leading.equalTo(self).offset(spacing)
+            make.trailing.equalTo(self).offset(-spacing)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-12)
         }
         

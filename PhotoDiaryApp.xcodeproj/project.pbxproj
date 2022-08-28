@@ -13,6 +13,11 @@
 		0E1E147628BB3A3600B65CF8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147528BB3A3600B65CF8 /* TabBarController.swift */; };
 		0E1E147828BB503000B65CF8 /* SnapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147728BB503000B65CF8 /* SnapDetailViewController.swift */; };
 		0E1E147A28BB528800B65CF8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147928BB528800B65CF8 /* DetailViewController.swift */; };
+		0E1E147C28BB5BBC00B65CF8 /* TapAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E147B28BB5BBC00B65CF8 /* TapAnimationView.swift */; };
+		0E1E148128BB777F00B65CF8 /* BackUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E148028BB777F00B65CF8 /* BackUpViewController.swift */; };
+		0E1E148428BBB90100B65CF8 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 0E1E148328BBB90100B65CF8 /* Zip */; };
+		0E1E148628BBBA5400B65CF8 /* BackUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E148528BBBA5400B65CF8 /* BackUpView.swift */; };
+		0E1E148828BBBD6300B65CF8 /* BackUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1E148728BBBD6300B65CF8 /* BackUpTableViewCell.swift */; };
 		0E23257728B6619D00B9592B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E23257628B6619D00B9592B /* Endpoint.swift */; };
 		0E23257928B661BD00B9592B /* UnsplashAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E23257828B661BD00B9592B /* UnsplashAPIManager.swift */; };
 		0E23257B28B661ED00B9592B /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E23257A28B661ED00B9592B /* URL+Extension.swift */; };
@@ -56,6 +61,10 @@
 		0E1E147528BB3A3600B65CF8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0E1E147728BB503000B65CF8 /* SnapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapDetailViewController.swift; sourceTree = "<group>"; };
 		0E1E147928BB528800B65CF8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0E1E147B28BB5BBC00B65CF8 /* TapAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAnimationView.swift; sourceTree = "<group>"; };
+		0E1E148028BB777F00B65CF8 /* BackUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpViewController.swift; sourceTree = "<group>"; };
+		0E1E148528BBBA5400B65CF8 /* BackUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpView.swift; sourceTree = "<group>"; };
+		0E1E148728BBBD6300B65CF8 /* BackUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpTableViewCell.swift; sourceTree = "<group>"; };
 		0E23257628B6619D00B9592B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0E23257828B661BD00B9592B /* UnsplashAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIManager.swift; sourceTree = "<group>"; };
 		0E23257A28B661ED00B9592B /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -95,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E1E148428BBB90100B65CF8 /* Zip in Frameworks */,
 				0E94D66528B4F8B700113A46 /* RealmSwift in Frameworks */,
 				0E1E147428B8617700B65CF8 /* FSCalendar in Frameworks */,
 				0E94D66328B4F8B700113A46 /* Realm in Frameworks */,
@@ -107,6 +117,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1E147F28BB774900B65CF8 /* BackUp */ = {
+			isa = PBXGroup;
+			children = (
+				0E1E148028BB777F00B65CF8 /* BackUpViewController.swift */,
+				0E1E148528BBBA5400B65CF8 /* BackUpView.swift */,
+				0E1E148728BBBD6300B65CF8 /* BackUpTableViewCell.swift */,
+			);
+			path = BackUp;
+			sourceTree = "<group>";
+		};
 		0E23257528B65CC200B9592B /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +219,7 @@
 			children = (
 				0E94D67A28B4FB5600113A46 /* WriteTextField.swift */,
 				0E94D67C28B4FB7C00113A46 /* DiaryImageView.swift */,
+				0E1E147B28BB5BBC00B65CF8 /* TapAnimationView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -220,6 +241,7 @@
 				0E94D66F28B4F9B300113A46 /* Home */,
 				0E94D66C28B4F99200113A46 /* Write */,
 				0E94D66D28B4F9A100113A46 /* ImageSearch */,
+				0E1E147F28BB774900B65CF8 /* BackUp */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -285,6 +307,7 @@
 				0E94D66428B4F8B700113A46 /* RealmSwift */,
 				0E23258328B66BEC00B9592B /* UnsplashPhotoPicker */,
 				0E1E147328B8617700B65CF8 /* FSCalendar */,
+				0E1E148328BBB90100B65CF8 /* Zip */,
 			);
 			productName = PhotoDiaryApp;
 			productReference = 0E94D64428B4F32400113A46 /* PhotoDiaryApp.app */;
@@ -320,6 +343,7 @@
 				0E94D66128B4F8B700113A46 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				0E23258228B66BEB00B9592B /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */,
 				0E1E147228B8617700B65CF8 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				0E1E148228BBB8FF00B65CF8 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 0E94D64528B4F32400113A46 /* Products */;
 			projectDirPath = "";
@@ -357,6 +381,7 @@
 				0E94D67D28B4FB7C00113A46 /* DiaryImageView.swift in Sources */,
 				0E23257928B661BD00B9592B /* UnsplashAPIManager.swift in Sources */,
 				0E94D67328B4FA9700113A46 /* HomeViewController.swift in Sources */,
+				0E1E148128BB777F00B65CF8 /* BackUpViewController.swift in Sources */,
 				0E23258128B6682900B9592B /* APIKey.swift in Sources */,
 				0E94D64C28B4F32400113A46 /* ViewController.swift in Sources */,
 				0E94D68128B4FBE200113A46 /* BaseViewController.swift in Sources */,
@@ -366,7 +391,9 @@
 				0E23257728B6619D00B9592B /* Endpoint.swift in Sources */,
 				0E94D67128B4FA3400113A46 /* RealmModel.swift in Sources */,
 				0E94D67F28B4FBA500113A46 /* ReusableProtocol.swift in Sources */,
+				0E1E147C28BB5BBC00B65CF8 /* TapAnimationView.swift in Sources */,
 				0E94D68D28B4FD9600113A46 /* SearchImageViewController.swift in Sources */,
+				0E1E148628BBBA5400B65CF8 /* BackUpView.swift in Sources */,
 				0E94D67728B4FB0E00113A46 /* Constants.swift in Sources */,
 				0E1E147A28BB528800B65CF8 /* DetailViewController.swift in Sources */,
 				0E94D67928B4FB2300113A46 /* Color.swift in Sources */,
@@ -378,6 +405,7 @@
 				0E23257B28B661ED00B9592B /* URL+Extension.swift in Sources */,
 				0E94D68928B4FCE200113A46 /* WriteViewController.swift in Sources */,
 				0E94D64A28B4F32400113A46 /* SceneDelegate.swift in Sources */,
+				0E1E148828BBBD6300B65CF8 /* BackUpTableViewCell.swift in Sources */,
 				0E94D69128B4FDE200113A46 /* ImageSearchCollectionViewCell.swift in Sources */,
 				0E94D68B28B4FD3800113A46 /* WriteView.swift in Sources */,
 			);
@@ -607,6 +635,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		0E1E148228BBB8FF00B65CF8 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		0E23258228B66BEB00B9592B /* XCRemoteSwiftPackageReference "unsplash-photopicker-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/unsplash/unsplash-photopicker-ios.git";
@@ -646,6 +682,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E1E147228B8617700B65CF8 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		0E1E148328BBB90100B65CF8 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E1E148228BBB8FF00B65CF8 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 		0E23258328B66BEC00B9592B /* UnsplashPhotoPicker */ = {
 			isa = XCSwiftPackageProductDependency;

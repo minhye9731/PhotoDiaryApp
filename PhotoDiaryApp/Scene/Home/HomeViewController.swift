@@ -14,6 +14,15 @@ class HomeViewController: BaseViewController {
     
     let repository = UserDiaryRepository()
     
+    // Realm 3. Realm에서 읽어온 데이터를 담을 배열 선언
+    // 어떤 작업이 있어도 property observer로 reload 해줄 수 있음! (정렬, 필터, 즐겨찾기 whatever)
+    var tasks: Results<UserDiary>! {
+        didSet {
+            tableView.reloadData()
+            print("Tasks Changed!!")
+        }
+    }
+    
     lazy var calendar: FSCalendar = {
         let view = FSCalendar()
         view.delegate = self
@@ -33,23 +42,16 @@ class HomeViewController: BaseViewController {
         view.delegate = self
         view.dataSource = self
         view.backgroundColor = .lightGray
+        view.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier)
         return view
     }()
-    
-    // Realm 3. Realm에서 읽어온 데이터를 담을 배열 선언
-    // 어떤 작업이 있어도 property observer로 reload 해줄 수 있음! (정렬, 필터, 즐겨찾기 whatever)
-    var tasks: Results<UserDiary>! {
-        didSet {
-            tableView.reloadData()
-            print("Tasks Changed!!")
-        }
-    }
+
     
     // MARK: - lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         print(#function)
-        tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: "cell")
+        view.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +84,8 @@ class HomeViewController: BaseViewController {
     func setNaviBarItem() {
         let sortButton = UIBarButtonItem(title: "정렬", style: .plain, target: self, action: #selector(sortButtonClicked))
         let filterButton = UIBarButtonItem(title: "필터", style: .plain, target: self, action: #selector(filterButtonClicked))
-        navigationItem.leftBarButtonItems = [sortButton, filterButton]
+        let backupButton = UIBarButtonItem(title: "백업", style: .plain, target: self, action: #selector(backupButtonClicked))
+        navigationItem.leftBarButtonItems = [sortButton, filterButton, backupButton]
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
     }
@@ -103,33 +106,42 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.reuseIdentifier) as? HomeTableViewCell else { return UITableViewCell() }
         
-        cell.diaryImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].objectId).jpg")
+        cell.diaryImageView.image = loadImageFromDocument(fileName: "\(tasks[indexPath.row].objectId).jpg") // 이것도 Cell로 빼볼까
+        
         cell.setData(data: tasks[indexPath.row])
         
         return cell
     }
     
     // 참고. TableView Editing Mode
-    // 테이블뷰 셀 높이가 작을 경우, 이미지가 없을 때, 시스템 이미지가 아닌 경우
+    // 테이블뷰 셀 높이가 작을 경우, 이미지가 없을 때, 시스템 이미지가 아닌 경우 확인해보기
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let row = self.tasks[indexPath.row]
         
         // 공식문서 참고 : uicontextualactionhandler
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
             
             // realm data update
-            self.repository.updateFavorite(item: self.tasks[indexPath.row])
+            self.repository.updateFavorite(item: row)
             // self.fetchRealm() 이제 이거 안해도 됨. 바뀌면 자동으로 인식해서 재정렬하니까.
         }
         
         //realm 데이터 기준
-        let image = tasks[indexPath.row].favorite ? "star.fill" : "star"
+        let image = row.favorite ? "star.fill" : "star"
         favorite.image = UIImage(systemName: image)
         favorite.backgroundColor = .systemPink
         
-        return UISwipeActionsConfiguration(actions: [favorite])
+        let example = UIContextualAction(style: .normal, title: "예시") { action, view, completionHandler in
+            print("trailing - example button clicked")
+        }
+        
+        return UISwipeActionsConfiguration(actions: [favorite, example])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let row = self.tasks[indexPath.row]
         
         // 공식문서 참고 : uicontextualactionhandler
         let favorite = UIContextualAction(style: .normal, title: "즐겨찾기") { action, view, completionHandler in
@@ -137,7 +149,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             // 해결방법 : 인텍스를 변수에 담아둬라. 데이터의 정합성을 위해
 //            let task = self.tasks[indexPath.row]
             
-            self.repository.deleteItem(item: self.tasks[indexPath.row])
+            self.repository.deleteItem(item: row)
             
             // 먼저하면 에러안남
 //            self.removeImageFromDocument(fileName: "\(self.tasks[indexPath.row].objectId).jpg")
@@ -150,11 +162,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //            self.removeImageFromDocument(fileName: "\(self.tasks[indexPath.row].objectId).jpg")
         }
         
-        let example = UIContextualAction(style: .normal, title: "예시") { action, view, completionHandler in
-            print("trailing - example button clicked")
+        let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completion in
+            self.repository.deleteItem(item: row)
         }
+        delete.image = UIImage(systemName: "trash")
         
-        return UISwipeActionsConfiguration(actions: [favorite, example])
+        return UISwipeActionsConfiguration(actions: [favorite, delete])
     }
     
 }
@@ -197,6 +210,11 @@ extension HomeViewController {
     
     @objc func filterButtonClicked() {
         tasks = repository.fetchFilter()
+    }
+    
+    @objc func backupButtonClicked() {
+        let vc = BackUpViewController()
+        transition(vc, transitionStyle: .presentFullNavigation)
     }
     
     @objc func plusButtonClicked() {

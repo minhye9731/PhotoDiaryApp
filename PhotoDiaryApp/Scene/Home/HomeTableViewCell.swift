@@ -11,34 +11,35 @@ class HomeTableViewCell: BaseTableViewCell {
     
     let diaryImageView: DiaryImageView = {
         let view = DiaryImageView(frame: .zero)
+        view.layer.masksToBounds = true
         return view
     }()
     
     let titleLabel: UILabel = {
-       let view = UILabel()
-        view.textColor = Constants.BaseColor.text
-        view.font = .boldSystemFont(ofSize: 15)
-        return view
+       let label = UILabel()
+        label.textColor = Constants.BaseColor.text
+        label.font = .boldSystemFont(ofSize: 15)
+        return label
     }()
     
     let dateLabel: UILabel = {
-       let view = UILabel()
-        view.textColor = Constants.BaseColor.text
-        view.font = .boldSystemFont(ofSize: 13)
-        return view
+       let label = UILabel()
+        label.textColor = Constants.BaseColor.text
+        label.font = .boldSystemFont(ofSize: 13)
+        return label
     }()
     
     let contentLabel: UILabel = {
-       let view = UILabel()
-        view.textColor = Constants.BaseColor.text
-        view.font = .systemFont(ofSize: 13)
-        return view
+       let label = UILabel()
+        label.textColor = Constants.BaseColor.text
+        label.font = .systemFont(ofSize: 13)
+        return label
     }()
     
-    let stackView: UIStackView = {
-        let view = UIStackView()
+    lazy var stackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [titleLabel, dateLabel, contentLabel])
         view.axis = .vertical
-        view.alignment = .top
+        view.alignment = .leading
         view.distribution = .fillEqually
         view.spacing = 2
         return view
@@ -59,35 +60,29 @@ class HomeTableViewCell: BaseTableViewCell {
     }
     
     override func configure() {
-        backgroundColor = Constants.BaseColor.background
+        backgroundColor = .clear
         
         [diaryImageView, stackView].forEach {
             contentView.addSubview($0)
         }
-        
-        [titleLabel, dateLabel, contentLabel].forEach {
-            stackView.addArrangedSubview($0)
-        }
     }
     
     override func setConstraints() {
-        let spacing = 8
+        let spacing = 16
         
         diaryImageView.snp.makeConstraints { make in
-            make.height.equalTo(contentView).inset(spacing)
+            make.height.equalToSuperview().multipliedBy(0.7)
             make.width.equalTo(diaryImageView.snp.height)
-            make.centerY.equalTo(contentView)
+            make.centerY.equalToSuperview()
             make.trailingMargin.equalTo(-spacing)
         }
         
         stackView.snp.makeConstraints { make in
-            make.leadingMargin.top.equalTo(spacing)
-            make.bottom.equalTo(-spacing)
+            make.leadingMargin.equalTo(spacing)
+            make.centerY.equalToSuperview()
             make.trailing.equalTo(diaryImageView.snp.leading).offset(-spacing)
+            make.height.equalTo(diaryImageView.snp.height)
         }
     }
-    
-
-    
     
 }

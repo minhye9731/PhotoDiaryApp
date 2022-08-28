@@ -18,6 +18,7 @@ protocol UserDiaryRepositoryType {
     func fetchDate(date: Date) -> Results<UserDiary>
     func updateFavorite(item: UserDiary)
     func deleteItem(item: UserDiary)
+    func plusItem(item: UserDiary)
 }
 
 class UserDiaryRepository: UserDiaryRepositoryType {
@@ -45,6 +46,7 @@ class UserDiaryRepository: UserDiaryRepositoryType {
         return localRealm.objects(UserDiary.self).filter("diaryDate >= %@ AND diaryDate < %@", date, Date(timeInterval: 86400, since: date)) // NSPredicate
     }
     
+    
     func updateFavorite(item: UserDiary) {
         
         let localRealm = try! Realm()
@@ -62,6 +64,16 @@ class UserDiaryRepository: UserDiaryRepositoryType {
         }
     }
     
+    func plusItem(item: UserDiary) {
+        do {
+            try localRealm.write {
+                localRealm.add(item)
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
     
     func deleteItem(item: UserDiary) {
         try! localRealm.write {
@@ -72,6 +84,7 @@ class UserDiaryRepository: UserDiaryRepositoryType {
         
         print("trailing - favorite button clicked")
     }
+    
     
     func removeImageFromDocument(fileName: String) {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return } // Document 경로
